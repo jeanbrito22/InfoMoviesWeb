@@ -1,0 +1,25 @@
+.list-genre { 
+    box-shadow: 6px 0 6px rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.list-genre:hover {
+    background-color: #dbdbdb;
+    border-radius: 0 !important;
+}
+
+@media(min-width: 768px) {
+    div.row:nth-child(1) > .list-genre {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    div.row:nth-child(1) > .list-genre:nth-child(1) {
+        margin-top: 50px;
+    }
+}

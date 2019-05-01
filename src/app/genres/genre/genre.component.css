@@ -1,0 +1,19 @@
+.genre {
+    font-family: "Roboto";
+    font-size: 20px;
+    border: none;
+    background-color: #fafafa;
+    border-radius: 0px !important;
+    text-align: center;
+}
+
+.genre > span {
+    display: block;
+    text-align: center;
+    color: #333;
+}
+
+.genre:hover {
+    color: #1976d2 !important;
+    background-color: #dbdbdb;
+}

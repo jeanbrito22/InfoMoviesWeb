@@ -1,0 +1,17 @@
+<im-spinner *ngIf="loading"></im-spinner>
+<div class="movie-genre">
+
+    <im-movie-title [attrClass]="'h1 text-danger'" class="movie-element"> 
+      {{ movie.title }} 
+    </im-movie-title>
+  
+    <im-movie-photo 
+      class="movie-element movie-image"
+      [url]="'http://image.tmdb.org/t/p/w300/' + movie.image">
+    </im-movie-photo>
+
+    <im-movie-description class="movie-element">
+      {{ movie.overview }}
+    </im-movie-description>
+
+</div>

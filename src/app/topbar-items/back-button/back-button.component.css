@@ -1,0 +1,21 @@
+.fa-arrow-left {
+    padding-right: 10px;
+}
+
+.back-button-link {
+    font-size: 18px;
+    color: white
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+    cursor: pointer;
+    float: right;
+}
+
+.hide {
+    display: none !important;
+}

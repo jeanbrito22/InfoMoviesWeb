@@ -1,0 +1,16 @@
+.socials {
+    display: block;
+    margin: 0 auto;
+}
+
+.socials a {
+    padding: 10px;
+}
+
+.socials a i {
+    color: white !important;
+}
+
+.socials a i:hover {
+    color: #fafafa !important;
+}

@@ -1,0 +1,8 @@
+.movie-description {
+    width: 80%;
+    text-indent: 20px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    text-align: justify;
+}
