@@ -1,34 +1,40 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
+import { AppApiKey } from 'src/app/app-api-key';
 
-const API_GENRE = `https://api.themoviedb.org/3/genre/movie/list?api_key=c09b1eae1c4e4ddc2fa403f1a9fe1dd0`
+
+const myApiKey: AppApiKey = new AppApiKey();
+
+const API_GENRE = `https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey.getApiKey()}`
 
 @Component({
   selector: 'im-genre-list',
   templateUrl: './genre-list.component.html',
   styleUrls: ['./genre-list.component.css']
 })
+
 export class GenreListComponent extends AppComponent implements OnInit {
 
   genres = [];
-  genreName = "";
   rows = [];
+  currentGenreName: string = "";
+
 
   ngOnInit() {
-    this.appService.getHttpGetParameters(API_GENRE).subscribe(
+    this.httpRequestService.makeRequest(API_GENRE).subscribe(
       genres => {
         this.genres = genres['genres']; 
-        this.rows = this.groupColumns(this.genres)
+        this.rows = this.groupColumns(this.genres);
       },
       error => console.log('Post request failed')
     );
+    
   }
-
-  getGenreName(event) {
-    let value = event.target.textContent;
-    console.log(value);
-    this.genreNameService.saveData(value);
-    this.rows = this.groupColumns(this.genres)
+  
+  getGenreName(genreId: string, genreName: string) {
+    this.currentGenreName = genreName;
+    this.shareGenreNameService.setData(this.currentGenreName);
+    this.router.navigate(['genre', genreId]);
   }
 
   groupColumns(movies) {
