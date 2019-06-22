@@ -1,6 +1,5 @@
-import { Component, AfterContentChecked } from '@angular/core';
-import { GenreNameService } from 'src/app/services/genre-name.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, AfterViewChecked, AfterContentChecked } from '@angular/core';
+import { ShareGenreNameService } from 'src/app/services/share-genre-name.service';
 
 @Component({
   selector: 'im-genre-type',
@@ -10,20 +9,12 @@ import { Router } from '@angular/router';
 export class GenreTypeComponent implements AfterContentChecked  {
 
 
-  genreName = "";
+  genreName:string = "";
 
-  constructor(private router: Router, private genreNameService: GenreNameService){}
+  constructor(private shareGenreNameService: ShareGenreNameService) {}
 
   ngAfterContentChecked() {
-    this.genreNameService.dataString$.subscribe(
-      data => {
-        if(this.genreName !== data){
-          this.genreName = data;
-        }
-        console.log(this.genreName);
-      });
+    this.genreName = this.shareGenreNameService.getData();
   }
-
-
 
 }
