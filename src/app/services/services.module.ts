@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GenreNameService } from './genre-name.service';
-import { AppService } from './app.service';
+import { HtttpRequestService } from './http-request.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [ HtttpRequestService ],
   imports: [
     CommonModule
-  ],
-  exports: [
-    GenreNameService,
-    AppService
   ]
 })
+
 export class ServicesModule { }
