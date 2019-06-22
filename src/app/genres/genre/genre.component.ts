@@ -6,9 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./genre.component.css']
 })
 export class GenreComponent{
-
-
-  @Input() genreId = '';
   
   constructor() {} 
 

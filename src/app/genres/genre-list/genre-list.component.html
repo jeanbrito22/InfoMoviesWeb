@@ -1,9 +1,8 @@
 <im-spinner *ngIf="loading"></im-spinner>
 
 <div class="row" *ngFor="let cols of rows">
-    <div class="list-group list-genre col-md-3" *ngFor="let genre of cols">
-      <im-genre (click)="getGenreName($event)"
-      [routerLink] = "['/genre/' + genre.id]">
+    <div *ngFor="let genre of cols" class="list-group list-genre col-md-3">
+      <im-genre (click)="getGenreName(genre.id, genre.name)">
         {{ genre.name }}
       </im-genre>
     </div>
