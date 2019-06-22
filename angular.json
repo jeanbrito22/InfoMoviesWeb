@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "loading-indicator": {
+    "infomoviesweb": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/loading-indicator",
+            "outputPath": "dist/infomoviesweb",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "loading-indicator:build"
+            "browserTarget": "infomoviesweb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "loading-indicator:build:production"
+              "browserTarget": "infomoviesweb:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "loading-indicator:build"
+            "browserTarget": "infomoviesweb:build"
           }
         },
         "test": {
@@ -104,7 +104,7 @@
         }
       }
     },
-    "loading-indicator-e2e": {
+    "infomoviesweb-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -113,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "loading-indicator:serve"
+            "devServerTarget": "infomoviesweb:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "loading-indicator:serve:production"
+              "devServerTarget": "infomoviesweb:serve:production"
             }
           }
         },
@@ -133,5 +133,5 @@
       }
     }
   },
-  "defaultProject": "loading-indicator"
+  "defaultProject": "infomoviesweb"
 }
