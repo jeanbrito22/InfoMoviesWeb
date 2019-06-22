@@ -1,1 +1,4 @@
-export interface Movies {}
+export interface Movies {
+    results: string,
+    error: string
+}

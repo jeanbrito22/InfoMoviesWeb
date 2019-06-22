@@ -1,17 +1,32 @@
 <im-spinner *ngIf="loading"></im-spinner>
-<div class="movie-genre">
+<div class="movie-genre">    
 
-    <im-movie-title [attrClass]="'h1 text-danger'" class="movie-element"> 
-      {{ movie.title }} 
-    </im-movie-title>
-  
-    <im-movie-photo 
-      class="movie-element movie-image"
-      [url]="'http://image.tmdb.org/t/p/w300/' + movie.image">
-    </im-movie-photo>
+    <div class="card bg-light w-75">
 
-    <im-movie-description class="movie-element">
-      {{ movie.overview }}
-    </im-movie-description>
+        <div class="card-header">
+            <im-movie-title [attrClass]="'h1 text-danger card-title text-center'" >{{ movie.title }}</im-movie-title>
+        </div>
+      
+      <div class="row card-img-top mt-3">
+        
+        <div class="col-5">
+          <im-movie-photo class="float-right"
+                [url]="'http://image.tmdb.org/t/p/w200/' + movie.poster_path">
+          </im-movie-photo>
+        </div>
 
+          <div class="col-7 d-flex flex-column justify-content-center">
+            <im-movie-photo 
+                  [url]="'http://image.tmdb.org/t/p/w500/' + movie.backdrop_path">
+            </im-movie-photo>
+        </div>
+
+        
+        <div class="card-body">
+            <im-movie-description class="card-text text-justify"> {{ movie.overview }} </im-movie-description>
+        </div>
+        
+        
+      </div>
+    </div>
 </div>
