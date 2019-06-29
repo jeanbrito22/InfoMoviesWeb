@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { AppApiKey } from '../app-api-key';
-import { Movie } from './movie';
+import { ActivatedRoute } from '@angular/router';
 
-const myApiKey: AppApiKey = new AppApiKey();
-const URL_BASE_API = 'https://api.themoviedb.org/3/movie/';
-const PARAMS_API = `?api_key=${myApiKey.getApiKey()}&language=en-US`;
+import { Movie } from './movie';
+import { LoadingIndicatorService } from '../loading/loading-indicator.service';
+
+
+
 
 @Component({
   selector: 'im-movie-page',
@@ -13,20 +13,27 @@ const PARAMS_API = `?api_key=${myApiKey.getApiKey()}&language=en-US`;
   styleUrls: ['./movie.component.css']
 })
 
-export class MovieComponent extends AppComponent implements OnInit {
+export class MovieComponent implements OnInit {
 
 
   movie: Movie = {adult: false, backdrop_path: "", genre_ids: [], id: 0, original_language: "",
                   original_title: "", overview: "", popularity: 0, poster_path: "", release_date: "",
                   title: "", vote_average: 0, vote_count: 0
-                };
+  };
+  loading: boolean = false;
 
+  constructor(private loadingIndicatorService: LoadingIndicatorService,
+              private activatedRoute: ActivatedRoute) {}
   
   ngOnInit() {
-    
-    const movieId = this.activatedRoute.snapshot.params.movieId;
-    
-    this.httpRequestService.makeRequest(URL_BASE_API, movieId, PARAMS_API).subscribe(
+    this.loadingIndicatorService.onLoadingChanged.subscribe(isLoading => this.loading = isLoading);
+    this.movie = this.activatedRoute.snapshot.data.movie;
+  }
+
+}
+
+
+/*this.httpRequestService.makeRequest(URL_BASE_API, movieId, PARAMS_API).subscribe(
       movie => {
         this.movie.adult = movie['adult'];
         this.movie.backdrop_path = movie['backdrop_path'];
@@ -43,8 +50,5 @@ export class MovieComponent extends AppComponent implements OnInit {
         this.movie.vote_count = movie['vote_count'];
       }
         
-    );
+    );*/
   
-  }
-
-}
