@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterContentChecked } from '@angular/core';
+import { Component, AfterContentChecked } from '@angular/core';
 import { ShareGenreNameService } from 'src/app/services/share-genre-name.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class GenreTypeComponent implements AfterContentChecked  {
 
 
   genreName:string = "";
+  language: string = "";
 
   constructor(private shareGenreNameService: ShareGenreNameService) {}
 
