@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class MoviePhotoComponent {
 
   @Input() url: string = "";
-
-  constructor() { }
+  @Input() description: string = "";
+  
 
 }

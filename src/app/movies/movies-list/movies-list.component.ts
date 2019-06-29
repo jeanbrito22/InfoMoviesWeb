@@ -1,35 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
-import { AppApiKey } from 'src/app/app-api-key';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+import { LoadingIndicatorService } from 'src/app/loading/loading-indicator.service';
 import { Movies } from './movies';
 
-const myApiKey: AppApiKey = new AppApiKey();
-
-const API_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=${myApiKey.getApiKey()}&with_genres=`;
 
 @Component({
-  selector: 'nyo-movies-list',
+  selector: 'im-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css']
 })
 
-export class MoviesListComponent extends AppComponent implements OnInit {
+
+export class MoviesListComponent implements OnInit, OnDestroy {
 
   movies: Movies[] = [];
+  filter: string = "";
+  loading: boolean = false;
+  debounce = new Subject<string>();
 
+  constructor(private activatedRoute: ActivatedRoute,
+              private loadingIndicatorService: LoadingIndicatorService) {}
   
   ngOnInit() {
 
-    const genreId = this.activatedRoute.snapshot.params.genreId;
-    
-    this.httpRequestService.makeRequest(API_MOVIES, genreId).subscribe(
-      
-      movies => { this.movies = movies['results']; console.log(this.movies)},
-      
-      error => console.log(error)
-    );
+    this.loadingIndicatorService.onLoadingChanged.subscribe(isLoading => this.loading = isLoading);
+    this.movies = this.activatedRoute.snapshot.data['movies']['results'];
+    this.debounce.pipe(debounceTime(300)).subscribe(filter => this.filter = filter);
 
   }
 
-}
+  ngOnDestroy() {
+    this.debounce.unsubscribe();
+  }
 
+}

@@ -1,4 +1,10 @@
 <im-spinner *ngIf="loading"></im-spinner>
 <div class="movie-list list-group list-genre">
-  <im-movie [movies]="movies"></im-movie>
+  <div class="d-flex flex-row justify-content-center mt-3 mb-3">
+    <form class="form-inline">
+      <input class="form-control rounded" type="search" placeholder="search..." autofocus
+      (keyup)="debounce.next($event.target.value)">
+    </form>
+  </div>
+  <im-movie [movies]="movies | filterByDescriptionOrTitle: filter"></im-movie>
 </div>

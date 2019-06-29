@@ -1,10 +1,14 @@
+<p class="text-center text-muted" *ngIf="!movies.length">
+  Sorry, no Movies
+</p>
+
 <div class="row" *ngFor="let cols of rows">
     
   <a  class="list-group-item list-group-item-action movie col-md-3 text-center"
       *ngFor="let movie of cols"
       [routerLink] = "['/movie/', movie.id]">
 
-      <im-movie-photo [url]="'http://image.tmdb.org/t/p/w200' + movie.poster_path"></im-movie-photo>
+      <im-movie-photo [url]="'http://image.tmdb.org/t/p/w200' + movie.poster_path" [description]="movie.overview"></im-movie-photo>
       <im-movie-title [attrClass]="'h6 title'"> {{ movie.title}} </im-movie-title>
   
   </a>

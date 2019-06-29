@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
-import { AppApiKey } from 'src/app/app-api-key';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { ShareGenreNameService } from 'src/app/services/share-genre-name.service';
+import { LoadingIndicatorService } from 'src/app/loading/loading-indicator.service';
 
 
-const myApiKey: AppApiKey = new AppApiKey();
-
-const API_GENRE = `https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey.getApiKey()}`
 
 @Component({
   selector: 'im-genre-list',
@@ -13,7 +12,12 @@ const API_GENRE = `https://api.themoviedb.org/3/genre/movie/list?api_key=${myApi
   styleUrls: ['./genre-list.component.css']
 })
 
-export class GenreListComponent extends AppComponent implements OnInit {
+export class GenreListComponent implements OnInit {
+
+
+  constructor(private shareGenreNameService: ShareGenreNameService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {}
 
   genres = [];
   rows = [];
@@ -21,14 +25,7 @@ export class GenreListComponent extends AppComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpRequestService.makeRequest(API_GENRE).subscribe(
-      genres => {
-        this.genres = genres['genres']; 
-        this.rows = this.groupColumns(this.genres);
-      },
-      error => console.log('Post request failed')
-    );
-    
+    this.rows = this.groupColumns(this.activatedRoute.snapshot.data['genres']['genres']);
   }
   
   getGenreName(genreId: string, genreName: string) {
@@ -37,12 +34,12 @@ export class GenreListComponent extends AppComponent implements OnInit {
     this.router.navigate(['genre', genreId]);
   }
 
-  groupColumns(movies) {
+  groupColumns(genres) {
     
     const newRows = [];
     
-    for (let i = 0; i < movies.length; i = i + 4) {
-      newRows.push( movies.slice(i, i + 4));
+    for (let i = 0; i < genres.length; i = i + 4) {
+      newRows.push( genres.slice(i, i + 4));
     }
     return newRows;
   }
