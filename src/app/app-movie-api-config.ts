@@ -3,7 +3,8 @@ import { KEY } from "./movie-api-key";
 export class AppMovieApiConfig {
     
     private static _apiKey: string = KEY;
-    private static language: string = "en-US";
+    private static language: string = "pt-BR";
+    private static movieListPage = 1;
 
 
     static getApiKey(): string {
@@ -16,6 +17,14 @@ export class AppMovieApiConfig {
 
     static getLanguage(): string {
         return AppMovieApiConfig.language;
-    } 
+    }
+    
+    static setMovieListPage(pageNumber: number): void {
+        AppMovieApiConfig.movieListPage = pageNumber;
+    }
+
+    static getMovieListPage(): number {
+        return AppMovieApiConfig.movieListPage;  
+    }
     
 }

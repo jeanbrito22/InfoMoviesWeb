@@ -8,7 +8,8 @@ import { HttpClientService } from 'src/app/services/http-client.service';
 
 const KEY = AppMovieApiConfig.getApiKey();
 const LANGUAGE: string = AppMovieApiConfig.getLanguage();
-const API_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&language=${LANGUAGE}&with_genres=`;
+const PAGE: number = AppMovieApiConfig.getMovieListPage();
+const API_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&language=${LANGUAGE}&page=${PAGE}&with_genres=`;
 
 @Injectable({ providedIn: 'root' })
 
